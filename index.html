@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RiseUp - Habit Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .habit-form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 200px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    li {
+      background: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>RiseUp Habit Tracker</h1>
+
+  <div class="habit-form">
+    <input type="text" id="habitInput" placeholder="New habit...">
+    <button onclick="addHabit()">Add</button>
+  </div>
+
+  <ul id="habitList"></ul>
+
+  <script>
+    function addHabit() {
+      const input = document.getElementById('habitInput');
+      const habitText = input.value.trim();
+      if (habitText !== '') {
+        const li = document.createElement('li');
+        li.innerHTML = `${habitText} <button onclick="toggleDone(this)">Done</button>`;
+        document.getElementById('habitList').appendChild(li);
+        input.value = '';
+      }
+    }
+
+    function toggleDone(button) {
+      const li = button.parentElement;
+      li.classList.toggle('done');
+    }
+  </script>
+
+</body>
+</html>
